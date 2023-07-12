@@ -1,24 +1,34 @@
-A python program using ECDH (Elliptic Curve Diffie–Hellman key Exchange) to encrypt and decrypt messages transmitting under HTTP requests
+## ECDH Encryption and Decryption using Python Flask
 
-STEP 1: we need to run 2 flask apps at the same time to simulate a communication platform. Each port represents a client.
+This Python program demonstrates the usage of Elliptic Curve Diffie–Hellman (ECDH) key exchange for encrypting and decrypting messages transmitted via HTTP requests. The program utilizes two Flask applications running simultaneously to simulate a communication platform between two clients.
 
-STEP 2: port 5000 sends its public key and combinekey to port 5001 by sending a request:
-        http://127.0.0.1:5000/send_keys
+### Step 1: Running Flask Apps
+To begin, run two Flask apps concurrently, each representing a client. Make sure to use different ports for each app.
 
-STEP 3: port 5001 sends its public key and combinekey to port 5000 by sending a request:
-        http://127.0.0.1:5001/send_keys
+### Step 2: Sending Public Key and Combined Key
+Port 5000 sends its public key and combined key to port 5001 by sending an HTTP request to http://127.0.0.1:5000/send_keys.
 
-STEP 4: show all the data of a port by sending requests:
-        http://127.0.0.1:5000/show, and http://127.0.0.1:5001/show
-        
-        The share key will show on its own terminal rather than on the web page,
-        so others cannot see it even using WireShark.
+### Step 3: Sending Public Key and Combined Key (Reverse)
+Port 5001 sends its public key and combined key to port 5000 by sending an HTTP request to http://127.0.0.1:5001/send_keys.
 
-STEP 5: port 5000 sends an encoded message to port 5001 by sending a request:
-        http://127.0.0.1:5000/send_msg
+### Step 4: Viewing Data
+To view the data of a port, send requests to http://127.0.0.1:5000/show for port 5000 and http://127.0.0.1:5001/show for port 5001. The shared key will be displayed in the respective terminal, ensuring that it is not visible on the web page or through network monitoring tools like WireShark.
 
-STEP 6: port 5001 decoded message by sending a request:
-        http://127.0.0.1:5001/decrypt_msg
+### Step 5: Sending Encoded Message
+Port 5000 sends an encoded message to port 5001 by sending an HTTP request to http://127.0.0.1:5000/send_msg.
 
-The decoded message will show on its own terminal rather than on the web page,
-so others cannot see it even using WireShark.
+### Step 6: Decoding Message
+Port 5001 decodes the received message by sending an HTTP request to http://127.0.0.1:5001/decrypt_msg. The decoded message will be displayed in the terminal, ensuring confidentiality even when using WireShark or similar tools.
+
+## How to Run
+1. Clone the repository and set up your Python environment.
+2. Install Flask and any necessary dependencies.
+3. Run both Flask apps concurrently, ensuring they use different ports.
+4. Follow the steps outlined above to perform the ECDH encryption and decryption.
+
+## Future Enhancements
+- Improved User Interface: Develop a user-friendly interface for easy interaction with the application.
+- Enhanced Security: Implement additional encryption techniques to further secure the communication.
+- Error Handling: Enhance error handling and validation to handle various scenarios.
+
+Feel free to contribute to this project and explore the powerful encryption capabilities provided by ECDH and Flask.
